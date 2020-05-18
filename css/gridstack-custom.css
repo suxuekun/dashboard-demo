@@ -1,0 +1,24 @@
+.widget-grid {
+	background: #dddddd;
+ }
+.grid-stack-item-content {
+	color: #2c3e50;
+	text-align: center;
+}
+.grid-stack > .grid-stack-item > .grid-stack-item-content.stack {
+	overflow-y:hidden;
+}
+.box.stack{
+	height:100%;
+	margin:0;
+}
+.box-header.stack{
+	height:40px;
+}
+.box-body.stack{
+	height:calc(100% - 40px);
+ 	overflow-y: scroll; 
+ }
+.grid-stack .grid-stack-placeholder > .placeholder-content{
+    border :2px dashed black;
+}

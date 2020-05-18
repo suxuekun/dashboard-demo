@@ -1,0 +1,54 @@
+
+<head>
+  <script src="js/jQuery/jquery.min.js"></script>
+  <script src="js/jquery-ui/jquery-ui.js"></script>
+  <script src="css/bootstrap-3.3.7/js/bootstrap.js"></script>
+  <script src="js/lodash/lodash.min.js"></script>
+  <script src="js/angular/angular.min.js"></script>
+  <script src="js/gridstack/gridstack.min.js"></script>
+  <script src="js/gridstack/gridstack-angular.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/widgets.js"></script>
+  <link rel="stylesheet" href="css/AdminLTE.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap-3.3.7/css/bootstrap.css">
+  <link rel="stylesheet" href="js/gridstack/gridstack.css">
+  <link rel="stylesheet" href="js/gridstack/gridstack-extra.css">
+  <link rel="stylesheet" href="css/gridstack-custom.css">
+</head>
+<body ng-app="app">
+  	<div class="row" ng-controller="widget">
+  		<div class="col-xs-12" ng-repeat = "w in widgets">
+  			<div class="">
+  				<div class="">
+  					<a href="#" ng-click="toggleWidget(w)">{{w.name}}<i class="fa fa-check text-green" ng-if="w.checked"></i></a>
+  				</div>
+  			</div>
+  		</div>
+  		<div class="col-xs-12" >
+  			<div gridstack class="grid-stack widget-grid" options="options" on-change="onChange(event,items)" on-drag-start="onDragStart(event,ui)" on-drag-stop="onDragStop(event,ui)" on-resize-start="onResizeStart(event,ui)" on-resize-stop="onResizeStop(event,ui)">
+                      <div gridstack-item id ="item_{{w.id}}"ng-repeat="w in userWidgets" class="grid-stack-item"
+  						gs-item-x="w.x" gs-item-y="w.y"
+  						gs-item-width="w.width" gs-item-height="w.height" 
+  						gs-item-min-height = "2" gs-item-min-width="2"
+  						gs-item-autopos = "w.autopos"
+  						on-item-added="onItemAdded(w,item)" on-item-removed="onItemRemoved(item)">
+                           	
+                              <div class="grid-stack-item-content stack">
+                              <div class="box box-info stack" style="overflow-y:hidden;">
+                              		<div class="box-header with-border">
+                              			{{w.info.name}}
+           							<div class="box-tools pull-right">
+  										<button type="button" class="btn btn-box-tool" ng-click="removeWidget(w)"><i class="fa fa-times"></i></button>
+  									</div>
+                              		</div>
+                              		<div class="box-body stack" ng-include src="w.info.url">
+                              		</div>
+                              </div>
+     					</div>
+                  </div>
+              </div>
+  		</div>
+  	</div>
+  
+</body>
